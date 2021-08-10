@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "json-simple-4.0.0.jar",
+        "commons-io-2.11.0.jar"
+    ]
+}

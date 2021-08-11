@@ -1,6 +1,8 @@
 # Projet_API_REST_Simplon
 Projet admission CDA Simplon.
 
+==================================================================================
+
 1) Lecture de l'ennoncé. 
 -Révision des termes: Repository/DAO, API REST
 
@@ -77,6 +79,7 @@ Solutions:
 -Ressources: 
 https://www.redhat.com/fr/topics/api/what-is-a-rest-api
 https://www.youtube.com/watch?v=BbZnsN3LSbY
+https://devstory.net/11199/tutoriel-java-restful-web-service-pour-debutant
 
 Temps cumulé : 2h
 
@@ -109,5 +112,66 @@ Temps cumulé :
 6) Redémarrer le projet en Java
 
 /// ---- CHAOS!!!---- /// 
-En essayant de "clean" mon repertoire git pour relancer un projet en java j'ai "PERDU" tout le travail de ma branche javascript et le debut de mes classes en java!!! Par chance, mon editeur de test était encore ouvert! ... Bazarre complet dans mon repo git. Je dois me résoudre à en créer un nouveau! ///
+En essayant de "clean" mon repertoire git pour relancer un projet en java j'ai "PERDU" tout le travail de ma branche javascript et le debut de mes classes en java!!! Par chance, mon editeur de test était encore ouvert! ... Desordre complet dans mon repo git. Je dois me résoudre à en créer un nouveau! ///
+
+Methodologie:
+
+a) Créer des classes comportant attribut de classe, accesseur de classe
+==> Classes prévues à l'origine: User, Topic, Category, Post. 
+==> Fichiers implémentés: User.java, Topic.java 
+
+b) Créer une interface qui permet de passer les contrats des methodes entre Topic/User et topicDao/UserDao 
+==> Fichier implémenté : Dao.java
+
+c) Création des modèle necessaire pour acceder aux objets afin de recuperer les informations « brutes » (modèle inspiré mvc) afin de servir le controller qui pourra se charger de la manipulation des données pour faire le crud (Create Read update Delete). C'est une couche d'abstraction qui permet de ne pas écrire les méthodes directement dans les classes métiers.
+==> Fichiers Implémentés: userDao.java et topicDao.java 
+
+d.1) Creation d'un controller (modèle inspiré mvc) qui sert à manipuler les données qui ont été récupéré par le modèle.
+En l'occurence le controller permet de:
+-Créer deux utilisateurs par defaut. 
+-Gerer les erreurs en cas d'une requête curl http inexistante.
+-Afficher l'utilisateur par id ou en liste.
+-Ajouter, Afficher, Modifier, supprimer user.
+-Gerer l'affichage individuel ou en liste de user. (voir d.2)
+-Générer un nouvelle id (/!/ La gestion d'erreur si id déjà existant non implémenté.)
+==> Fichier Controllers.java. 
+
+
+d.2) Modification du fichier User: ajout methode de classe pour le constructeur pour désérialiser les données en récupérant les données de User afin de pouvoir les traiter individuellement.Pour cela j'ai ajouté une librairie à mon IDE pour pouvoir importer et utiliser des outils qui peuvent traiter le format Json.
+==> settings.json + librairie json-simple.
+
+
+e) Créer un script principale (main) pour affichage sur port http 8000 (http://localhost:8000/user/ - Afficher la liste des utilisateurs. ou http://localhost:8000/user/0 - Permet d'afficher l'utilisateur par ID ==> Accessible par requête curl.)
+==>Fichiers Implémentés: main.java
+
+
+Ce que j'ai sût faire: 
+-Implementer classes, interface, methodes CRUD, utiliser git et curl en ligne de commande, comprendre le shema UMl, Utiliser visual studio code, importer des librairies, comprendre le shema DAO/MVC, m'inspirer du modèle MVC.
+
+Ce qui a été plus flou: 
+-Désérialiser avec la librairie Json. 
+
+Ce que je n'ai pas sût faire sans aide: 
+-Mettre en place les routes http. Je ne visualisais pas comment traiter les routes.
+
+Solutions: 
+-Beaucoup de documentations. 
+-Appeller tous mes copains developpeurs pour avoir des panneaux d'indications pour me mettre sur la bonne voie.
+
+
+Ressources (principales): 
+https://www.jmdoudoux.fr/java/dej/chap-json.htm
+https://koor.fr/Java/Tutorial/java_reflexion_persistance.wp
+https://blog.oxiane.com/2018/09/24/http2-api-http-client-de-java-11/
+https://www.playframework.com/documentation/2.8.x/JavaRouting
+https://github.com/cliftonlabs/json-simple
+
+Temps cumulé :
+-Coder: < 18h
+-Appeller au secours: 4h 
+
+
+==================================================================================
+
+
 
